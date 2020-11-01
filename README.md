@@ -1,5 +1,10 @@
 # Assignments for Parallel and Concurrent Programming class @ FCUL
-## assignment1: A Genetic Algorithm for The Knapsack Problem
+
+## Table of Contents
+1. [assignment1: A Genetic Algorithm for The Knapsack Problem](#assignment1)
+2. [assignment2: The N-Body Problem](#assignment2)
+
+## assignment1: A Genetic Algorithm for The Knapsack Problem <a name="assignment1"></a>
 ### The Knapsack Problem
 Given a set of n objects, each having a value v and a weight w, we want to 
 find the set of k objects that maximize the total value but has a total weight 
@@ -51,7 +56,7 @@ QuickSort or other).
 
 Write a short report on the work done (details below).
 
-## Submission Instructions
+### Submission Instructions
 You should submit your assignment via Moodle as a zip file with your code 
 and a PDF or txt report.
 
@@ -64,7 +69,7 @@ the following:
 
 The report should not exceed one A4 page.
 
-## assignment2: The N-Body Problem
+## assignment2: The N-Body Problem <a name="assignment2"></a>
 The [N-Body simulation](https://en.wikipedia.org/wiki/N-body_simulation) provided simulates N-bodies in space, initialized with 
 random coordinates (x,y,z), velocities (vx, vy, vz) and mass.
 
