@@ -64,3 +64,25 @@ the following:
 
 The report should not exceed one A4 page.
 
+## assignment2: The N-Body Problem
+The [N-Body simulation](https://en.wikipedia.org/wiki/N-body_simulation) provided simulates N-bodies in space, initialized with 
+random coordinates (x,y,z), velocities (vx, vy, vz) and mass.
+
+### The Task
+Parallelize only the advance method on the NBodySystem class. The method has 
+a quadratic complexity on the number of bodies.
+
+This method applies the gravity force to all pairs of bodies, as well as 
+advances the bodies according to their current velocity.
+
+### Submission Instructions
+You should submit your assignment via Moodle as a zip file with your code 
+and a PDF or txt report.
+
+The report is as important as the working code — This is a Masters-level 
+course after all! — and will be evaluated as such. Your report should include the following:
+- description of how parallelization was applied
+- the rationale for the parallelization method used
+- measurements showing whether parallelization was advantageous in each case
+
+The report should not exceed one A4 page.

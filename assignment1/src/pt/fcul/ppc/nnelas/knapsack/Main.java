@@ -25,7 +25,7 @@ public class Main {
                 multiThreadManager, POP_SIZE, PROB_MUTATION);
 
         SortingAlgorithm sortingAlgorithm = new QuickSortWrapper(NUMBER_OF_THREADS);
-        //SortingAlgorithm sortingAlgorithm = new MergeSortWrapper(NUMBER_OF_THREADS);
+        // SortingAlgorithm sortingAlgorithm = new MergeSortWrapper(NUMBER_OF_THREADS);
 
         KnapsackGA ga = new KnapsackGA(
                 fitnessCalculatorService, crossoverService, mutationService, sortingAlgorithm,
