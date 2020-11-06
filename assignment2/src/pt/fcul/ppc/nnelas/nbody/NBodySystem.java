@@ -1,6 +1,7 @@
 package pt.fcul.ppc.nnelas.nbody;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class NBodySystem {
 
@@ -31,36 +32,39 @@ public class NBodySystem {
         bodies[0].offsetMomentum(px, py, pz);
     }
 
-    // TODO: parallelize
     public void advance(double dt) {
-
-        for (int i = 0; i < bodies.length; ++i) {
+        IntStream.range(0, bodies.length).parallel().forEachOrdered(i -> {
             NBody iBody = bodies[i];
-            for (int j = i + 1; j < bodies.length; ++j) {
-                final NBody body = bodies[j];
-                double dx = iBody.x - body.x;
-                double dy = iBody.y - body.y;
-                double dz = iBody.z - body.z;
+            IntStream.range(i + 1, bodies.length).parallel().forEachOrdered(j -> {
+                makeCalculations(iBody, bodies[j], dt);
+            });
 
-                double dSquared = dx * dx + dy * dy + dz * dz;
-                double distance = Math.sqrt(dSquared);
-                double mag = dt / (dSquared * distance);
+            moveBody(iBody, dt);
+        });
+    }
 
-                iBody.vx -= dx * body.mass * mag;
-                iBody.vy -= dy * body.mass * mag;
-                iBody.vz -= dz * body.mass * mag;
+    private void makeCalculations(NBody iBody, NBody body, double dt) {
+        double dx = iBody.x - body.x;
+        double dy = iBody.y - body.y;
+        double dz = iBody.z - body.z;
 
-                body.vx += dx * iBody.mass * mag;
-                body.vy += dy * iBody.mass * mag;
-                body.vz += dz * iBody.mass * mag;
-            }
-        }
+        double dSquared = dx * dx + dy * dy + dz * dz;
+        double distance = Math.sqrt(dSquared);
+        double mag = dt / (dSquared * distance);
 
-        for (NBody body : bodies) {
-            body.x += dt * body.vx;
-            body.y += dt * body.vy;
-            body.z += dt * body.vz;
-        }
+        iBody.vx -= dx * body.mass * mag;
+        iBody.vy -= dy * body.mass * mag;
+        iBody.vz -= dz * body.mass * mag;
+
+        body.vx += dx * iBody.mass * mag;
+        body.vy += dy * iBody.mass * mag;
+        body.vz += dz * iBody.mass * mag;
+    }
+
+    private void moveBody(NBody body, double dt) {
+        body.x += dt * body.vx;
+        body.y += dt * body.vy;
+        body.z += dt * body.vz;
     }
 
     public double energy() {

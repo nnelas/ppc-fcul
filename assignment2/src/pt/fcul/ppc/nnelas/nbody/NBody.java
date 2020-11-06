@@ -23,11 +23,10 @@ public class NBody {
 
     }
 
-    NBody offsetMomentum(double px, double py, double pz) {
+    void offsetMomentum(double px, double py, double pz) {
         vx = -px / NBodySystem.SOLAR_MASS;
         vy = -py / NBodySystem.SOLAR_MASS;
         vz = -pz / NBodySystem.SOLAR_MASS;
-        return this;
     }
 
 }
